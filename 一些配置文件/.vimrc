@@ -32,6 +32,39 @@ filetype on
 "about python"
 set filetype=python
 au BufNewFile,BufRead *.py,*.pyw setf python
-"按F5运行python"
-map <F5> :w<cr>:!python %<cr>
 
+"一键编译运行程序”
+" <F5> 编译和运行C
+map <f5> :call CompileRunGcc()<cr>
+func! CompileRunGcc()
+exec "w"
+exec "!gcc % -o %<"
+exec "! ./%<"
+endfunc
+ 
+"<F6> 编译和运行C++
+map <f6> :call CompileRunGpp()<cr>
+func! CompileRunGpp()
+exec "w"
+exec "!g++ % -o %<"
+exec "! ./%<"
+endfunc
+  
+" <F7> 运行python程序
+map <f7> :w<cr>:!python %<cr>
+ 
+" <F8> 运行shell程序
+map <f8> :call CompileRunSH()<cr>
+func! CompileRunSH()
+exec "w"
+exec "!chmod a+x %"
+exec "!./%"
+endfunc
+ 
+"<F9>  gdb调试
+map <f9> :call Debug()<cr>
+func!  Debug()
+exec "w"
+exec "!gcc % -o %< -gstabs+"
+exec "!gdb %<"
+endfunc
