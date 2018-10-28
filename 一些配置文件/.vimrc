@@ -34,14 +34,4 @@ set filetype=python
 au BufNewFile,BufRead *.py,*.pyw setf python
 "按F5运行python"
 map <F5> :w<cr>:!python %<cr>
-function RunPython()
-	let mp = &makeprg
-	let ef = &errorformat
-	let axaFile = expand("%:t")
-	setlocal makeprg=python\ -u
-	set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %L%.%#,%Z%[%^\,]%\\@=%m
-	silent make %
-	copen
-	let &makeprg = mp
-	let &errorformat = ef
-endfunction
+
