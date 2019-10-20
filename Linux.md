@@ -5,6 +5,9 @@
   - [Install Linux](#install-linux)
     - [无法进入图形化界面(双显卡切换)](#%e6%97%a0%e6%b3%95%e8%bf%9b%e5%85%a5%e5%9b%be%e5%bd%a2%e5%8c%96%e7%95%8c%e9%9d%a2%e5%8f%8c%e6%98%be%e5%8d%a1%e5%88%87%e6%8d%a2)
     - [安装CUDA以及cudnn](#%e5%ae%89%e8%a3%85cuda%e4%bb%a5%e5%8f%8acudnn)
+  - [系统备份与恢复](#%e7%b3%bb%e7%bb%9f%e5%a4%87%e4%bb%bd%e4%b8%8e%e6%81%a2%e5%a4%8d)
+    - [备份](#%e5%a4%87%e4%bb%bd)
+    - [恢复](#%e6%81%a2%e5%a4%8d)
   - [oh-my-zsh](#oh-my-zsh)
     - [安装比较简单](#%e5%ae%89%e8%a3%85%e6%af%94%e8%be%83%e7%ae%80%e5%8d%95)
     - [配置](#%e9%85%8d%e7%bd%ae)
@@ -15,6 +18,7 @@
     - [基本操作](#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c)
     - [一些问题](#%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98)
   - [Transmission(Linux下的BT下载工具)](#transmissionlinux%e4%b8%8b%e7%9a%84bt%e4%b8%8b%e8%bd%bd%e5%b7%a5%e5%85%b7)
+    - [解决Mendeley Linux下无法输入中文](#%e8%a7%a3%e5%86%b3mendeley-linux%e4%b8%8b%e6%97%a0%e6%b3%95%e8%be%93%e5%85%a5%e4%b8%ad%e6%96%87)
   - [一些命令行技巧](#%e4%b8%80%e4%ba%9b%e5%91%bd%e4%bb%a4%e8%a1%8c%e6%8a%80%e5%b7%a7)
     - [C](#c)
     - [H](#h)
@@ -57,6 +61,48 @@
 CUDA、cudnn、显卡的驱动三者的版本号必须对应，具体操作应该先查看当前显卡型号并安装显卡驱动，之后根据显卡驱动的版本号找到其所[对应的CUDA版本](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html),然后根据所安装的CUDA版本选择对应的cudnn版本。
 > 参考文章
 > [Ubuntu18.04安装CUDA10、CUDNN](https://blog.csdn.net/qq_32408773/article/details/84112166)
+
+## 系统备份与恢复
+
+### 备份
+
+linux秉承一切从文件出发的原则，备份系统就相当于将整个/(根目录)打包，使用下面的命令：
+```
+tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/tmp --exclude=/mnt --exclude=/run --exclude=/media / --warning=no-file-change
+```
+解释一下命令的意思：
+
+tar命令参数：
+
+-c： 新建一个备份文档
+
+-v： 显示详细信息
+
+-p： 保存权限，并应用到所有文件
+
+-z： 用gzip压缩备份文档，减小空间
+
+-f： 指定压缩包名称（带路径），只能做最后一个参数
+
+–exclude： 排除指定目录，不进行备份
+
+所排除的目录：
+/proc：一个虚拟文件系统，系统运行的每一个进程都会自动在这个目录下面创建一个进程目录。
+
+/tmp：一个临时文件夹，系统的一些临时文件会放在这里。
+
+/lost+found：系统发生错误时（比如非法关机），可以在这里找回一些丢失文件。
+
+/media：多媒体挂载点，像u盘、移动硬盘、windons分区等都会自动挂载到这个目录下。
+
+/mnt：临时挂载点，你可以自己挂载一些文件系统到这里。
+
+/run：系统从启动以来产生的一些信息文件。
+
+/backup.tgz：排除备份文件自身，否则会出现一些意想不到的问题。
+
+### 恢复
+
 
 ## oh-my-zsh
 
@@ -231,6 +277,9 @@ Transmission 是最流行的基于图形界面的 BitTorrent 客户端之一。t
     $ wget http://releases.ubuntu.com/14.10/ubuntu-14.10-desktop-amd64.iso.torrent
     $ transmission-cli ubuntu-14.10-desktop-amd64.iso.torrent
     ```
+### 解决Mendeley Linux下无法输入中文
+
+https://www.findhao.net/easycoding/2287.html
 
 ## 一些命令行技巧
 
