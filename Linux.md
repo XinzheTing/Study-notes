@@ -5,6 +5,8 @@
   - [Install Linux](#install-linux)
     - [无法进入图形化界面(双显卡切换)](#%e6%97%a0%e6%b3%95%e8%bf%9b%e5%85%a5%e5%9b%be%e5%bd%a2%e5%8c%96%e7%95%8c%e9%9d%a2%e5%8f%8c%e6%98%be%e5%8d%a1%e5%88%87%e6%8d%a2)
     - [安装CUDA以及cudnn](#%e5%ae%89%e8%a3%85cuda%e4%bb%a5%e5%8f%8acudnn)
+  - [使用git自动部署代码到服务器](#%e4%bd%bf%e7%94%a8git%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2%e4%bb%a3%e7%a0%81%e5%88%b0%e6%9c%8d%e5%8a%a1%e5%99%a8)
+    - [遇到的问题](#%e9%81%87%e5%88%b0%e7%9a%84%e9%97%ae%e9%a2%98)
   - [系统备份与恢复](#%e7%b3%bb%e7%bb%9f%e5%a4%87%e4%bb%bd%e4%b8%8e%e6%81%a2%e5%a4%8d)
     - [备份](#%e5%a4%87%e4%bb%bd)
     - [恢复](#%e6%81%a2%e5%a4%8d)
@@ -62,6 +64,16 @@ CUDA、cudnn、显卡的驱动三者的版本号必须对应，具体操作应�
 > 参考文章
 > [Ubuntu18.04安装CUDA10、CUDNN](https://blog.csdn.net/qq_32408773/article/details/84112166)
 
+## 使用git自动部署代码到服务器
+
+>参考文章[使用 Git 实现 项目的自动化部署](https://juejin.im/post/5d74569e5188253e547f504f)
+
+### 遇到的问题
+1. 配置好公钥后登录还是需要密码：
+   
+   首先将公钥拷贝到服务器时尽量使用```ssh-copy-id -i ~/.ssh/id_rsa username@server_ip```
+
+   其次需要确认```~/.ssh```和```authorized_keys```的权限问题应该分别为700和600。
 ## 系统备份与恢复
 
 ### 备份
